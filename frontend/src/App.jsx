@@ -26,7 +26,7 @@ function App() {
   // Function to setup initial balance + transaction history from backend
   useEffect(() => {
     console.log('effect')
-    axios.get('http://localhost:3000/transactions')
+    axios.get('/transactions')
       .then(response => {
         console.log('promise fulfilled')
         setTransactions(response.data)
@@ -69,7 +69,7 @@ function App() {
       date: new Date().toISOString()
     }
     console.log('testing')
-    axios.post('http://localhost:3000/transactions', transactionObject)
+    axios.post('/transactions', transactionObject)
       .then(response => {
         console.log("Sent to backend,", response.data)
         setTransactions(transactions.concat(response.data))
@@ -96,7 +96,7 @@ function App() {
       amount: balance,
       date: new Date().toISOString()
     }
-      axios.post('http://localhost:3000/transactions', transactionObject)
+      axios.post('/transactions', transactionObject)
         .then(response => {
           setTransactions(transactions.concat(response.data))
           setNewBalance("")
@@ -114,7 +114,7 @@ function App() {
       amount: Number(newBalance),
       date: new Date().toISOString()
     }
-    axios.post('http://localhost:3000/transactions', transactionObject)
+    axios.post('/transactions', transactionObject)
       .then(response =>{
         console.log("this is the response:", response.body)
         setTransactions(transactions.concat(response.data))
